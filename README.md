@@ -17,7 +17,7 @@ A code with several commands and exceptions has three main commands:
 
 # SETUP
 
-- Python (PIP)
+- Python
   - Open cmd and go to the project folder using CD on windows or linux and run the following command.
   - python DiscordRaidBot.py
   - Enter your token into the code.
