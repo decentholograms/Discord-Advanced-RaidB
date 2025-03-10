@@ -11,7 +11,6 @@ A code with several commands and exceptions has three main commands:
 ![image](https://github.com/user-attachments/assets/ccce977e-4a4f-44fd-982b-0bff038f1ad8)
 ![image](https://github.com/user-attachments/assets/9d6c055f-bcaf-403c-8c36-6d8b8bd5ea50)
 ![image](https://github.com/user-attachments/assets/bfb3ed1e-1127-4491-a192-f689d4b64e0d)
-![image](https://github.com/user-attachments/assets/43165acb-5850-4a20-afaa-f0f57c460de5)
 ![image](https://github.com/user-attachments/assets/cc985ebb-d0ea-4ac3-816b-82ab83ef880d)
 ![image](https://github.com/user-attachments/assets/a782d9ee-aa6d-49e3-a29d-02cafe12053a)
 ![image](https://github.com/user-attachments/assets/4a6842ee-44b1-4345-ba6f-2a913939f94f)
