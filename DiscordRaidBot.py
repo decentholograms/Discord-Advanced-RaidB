@@ -8,7 +8,7 @@ for module in required_modules:
     try:
         __import__(module)
     except ImportError:
-        print(f"📦 Installing missing module: {module}...")
+        print(f"Installing missing module: {module}...")
         subprocess.run([sys.executable, "-m", "pip", "install", module], check=True)
 
 import discord
@@ -25,7 +25,7 @@ def clear():
 
 clear()
 
-bot_token = input("🔑 Enter your bot token: ")
+bot_token = input("Enter your bot token: ")
 bot = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 
 @bot.event
@@ -78,14 +78,14 @@ async def nukeserver(interaction: discord.Interaction, new_name: str, spam_messa
     user = interaction.user
 
     embed_server = discord.Embed(
-        title="🔥 RAID STARTED 🔥",
+        title="Raid Started",
         description=f"**Server:** {guild.name}\n**New Name:** `{new_name}`\n**Spam Message:** `{spam_message}`\n**New Role Name:** `{new_role_name}`",
         color=discord.Color.from_rgb(255, 0, 0)
     )
     await interaction.followup.send(embed=embed_server, ephemeral=True)
 
     embed_dm = discord.Embed(
-        title="🔥 RAID STARTED 🔥",
+        title="Raid Started",
         description=f"**Server:** `{guild.name}`\n**New Name:** `{new_name}`\n**Spam Message:** `{spam_message}`\n**New Role Name:** `{new_role_name}`",
         color=discord.Color.from_rgb(255, 0, 0)
     )
@@ -100,12 +100,12 @@ async def nukeserver(interaction: discord.Interaction, new_name: str, spam_messa
             await role.edit(name=new_role_name)
             await asyncio.sleep(0.5) 
         except discord.Forbidden:
-            failed_roles.append(f"❌ No permission to rename **{role.name}**.")
+            failed_roles.append(f"No permission to rename **{role.name}**.")
         except discord.HTTPException as e:
-            failed_roles.append(f"❌ Could not rename **{role.name}**: `{e}`")
+            failed_roles.append(f"Could not rename **{role.name}**: `{e}`")
 
     if failed_roles:
-        embed_roles_error = discord.Embed(title="⚠️ Role Rename Errors", description="\n".join(failed_roles), color=discord.Color.from_rgb(255, 0, 0))
+        embed_roles_error = discord.Embed(title="Role Rename Errors", description="\n".join(failed_roles), color=discord.Color.from_rgb(255, 0, 0))
         try:
             await user.send(embed=embed_roles_error)
         except discord.Forbidden:
@@ -118,14 +118,14 @@ async def nukeserver(interaction: discord.Interaction, new_name: str, spam_messa
             await asyncio.sleep(0.2) 
         except discord.HTTPException as e:
             if e.code == 50074:
-                failed_channels.append(f"❌ Cannot delete **{channel.name}** (Community channel).")
+                failed_channels.append(f"Cannot delete **{channel.name}** (Community channel).")
             else:
-                failed_channels.append(f"❌ Could not delete **{channel.name}**: `{e}`")
+                failed_channels.append(f"Could not delete **{channel.name}**: `{e}`")
         except discord.Forbidden:
-            failed_channels.append(f"❌ No permission to delete **{channel.name}**.")
+            failed_channels.append(f"No permission to delete **{channel.name}**.")
 
     if failed_channels:
-        embed_error = discord.Embed(title="⚠️ Deletion Errors", description="\n".join(failed_channels), color=discord.Color.from_rgb(255, 0, 0))
+        embed_error = discord.Embed(title="Deletion Errors", description="\n".join(failed_channels), color=discord.Color.from_rgb(255, 0, 0))
         try:
             await user.send(embed=embed_error)
         except discord.Forbidden:
@@ -158,27 +158,27 @@ async def banall(interaction: discord.Interaction, message: str):
 
         if not guild:
             return await interaction.user.send(embed=discord.Embed(
-                title="❌ Error", 
+                title="Error", 
                 description="Could not retrieve the server.", 
                 color=discord.Color.from_rgb(255, 0, 0)
             ))
 
         if not interaction.user.guild_permissions.ban_members:
             return await interaction.user.send(embed=discord.Embed(
-                title="❌ Error", 
+                title="Error", 
                 description="You do not have permission to ban members.", 
                 color=discord.Color.from_rgb(255, 0, 0)
             ))
 
         if not guild.me.guild_permissions.ban_members:
             return await interaction.user.send(embed=discord.Embed(
-                title="❌ Error", 
+                title="Error", 
                 description="I do not have permission to ban members.", 
                 color=discord.Color.from_rgb(255, 0, 0)
             ))
 
         await interaction.response.send_message(embed=discord.Embed(
-            title="🔍 Ban Process Started",
+            title="Ban Process Started",
             description="Check your DM for info.",
             color=discord.Color.from_rgb(255, 0, 0)
         ), ephemeral=True)
@@ -189,7 +189,7 @@ async def banall(interaction: discord.Interaction, message: str):
 
             try:
                 embed_dm = discord.Embed(
-                    title="⛔ Ban Notice",
+                    title="Ban Notice",
                     description="You have been banned from the server.",
                     color=discord.Color.from_rgb(255, 0, 0)
                 )
@@ -203,31 +203,32 @@ async def banall(interaction: discord.Interaction, message: str):
                 banned_count += 1
 
                 embed_ban_confirm = discord.Embed(
-                    title="✅ Ban Executed",
+                    title="Ban Executed",
                     description=f"**User:** {member.name}#{member.discriminator}",
                     color=discord.Color.from_rgb(255, 0, 0)
                 )
                 await interaction.user.send(embed=embed_ban_confirm)
 
             except discord.Forbidden:
-                skipped_members.append(f"⚠️ Could not ban {member.name}")
+                skipped_members.append(f"Could not ban {member.name}")
 
-        description = f"🔨 **Total Banned:** {banned_count}"
+        description = f"**Total Banned:** {banned_count}"
         if skipped_members:
-            description += "\n\n🚫 **Skipped Members:**\n" + "\n".join(skipped_members)
+            description += "\n\n**Skipped Members:**\n" + "\n".join(skipped_members)
 
         await interaction.user.send(embed=discord.Embed(
-            title="✅ Ban Process Completed",
+            title="Ban Process Completed",
             description=description,
             color=discord.Color.from_rgb(255, 0, 0)
         ))
 
     except discord.DiscordException as e:
         await interaction.user.send(embed=discord.Embed(
-            title="❌ Error",
+            title="Error",
             description="An error occurred while banning members.",
             color=discord.Color.from_rgb(255, 0, 0)
         ))
         await interaction.user.send(f"```{e}```")  
+
 
 bot.run(bot_token)
