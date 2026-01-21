@@ -15,4 +15,6 @@ A code with several commands and exceptions has three main commands:
   - Join the bot to any server you want to attack.
   - Move your bot's role as high as you can (when you attach a bot to a server a bot role is generated).
 
+# DISCLAIMER
 
+For educational purposes only. The author is not responsible for any misuse of this content.
